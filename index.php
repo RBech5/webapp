@@ -8,7 +8,7 @@ CONNECTING TO A DATABASE
 </head>
 <body>
 <?php
-
+echo ("ASDASD");
 $con = pg_connect("host=172.17.0.2 port=5432 dbname=mydb user=docker password=docker");
 $result = pg_query($con, "SELECT * FROM mytable");
 $val = pg_fetch_all($result);
