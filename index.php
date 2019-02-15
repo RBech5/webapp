@@ -10,13 +10,12 @@ CONNECTING TO A DATABASE
 <?php
 $con = new mysqli("mysql", "root", "password", "mydb");
 // Check connection
-if ($conn->connect_error) {
-	die("Connection failed: " . $conn->connect_error);
+if ($con->connect_error) {
+	die("Connection failed: " . $con->connect_error);
 }
 
 $sql = "SELECT * FROM mytable";
-$result = $conn->query($sql);  
-$val = pg_fetch_all($result);
+$result = $con->query($sql);  
 if ($result->num_rows > 0) 
 {
 ?>
@@ -35,6 +34,7 @@ if ($result->num_rows > 0)
 <td><?php echo $array['Age']; ?></td>
 </tr>
 <?php
+}
 }
 $con->close();
 ?>
