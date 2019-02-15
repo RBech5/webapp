@@ -17,7 +17,8 @@ if ($conn->connect_error) {
 $sql = "SELECT * FROM mytable";
 $result = $conn->query($sql);  
 $val = pg_fetch_all($result);
-if ($result->num_rows > 0) {
+if ($result->num_rows > 0) 
+{
 ?>
 <table border='1'>
 <tr>
@@ -35,8 +36,6 @@ if ($result->num_rows > 0) {
 </tr>
 <?php
 }
-else {
-echo "0 results";}
 $con->close();
 ?>
 </table>
