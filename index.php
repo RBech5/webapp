@@ -8,9 +8,16 @@ CONNECTING TO A DATABASE
 </head>
 <body>
 <?php
-$con = pg_connect("host=172.17.0.2 port=5432 dbname=mydb user=docker password=docker");
-$result = pg_query($con, "SELECT * FROM mytable");
+$con = new mysqli("mysql", "root", "password", "mydb");
+// Check connection
+if ($conn->connect_error) {
+	die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT * FROM mytable";
+$result = $conn->query($sql);  
 $val = pg_fetch_all($result);
+if ($result->num_rows > 0) {
 ?>
 <table border='1'>
 <tr>
@@ -19,8 +26,7 @@ $val = pg_fetch_all($result);
 <th>Age</th>
 </tr>
 <?php
-foreach($val as $array)
-{
+	while($array = $result->fetch_assoc()) {
 ?>
 <tr>
 <td><?php echo $array['Nom']; ?></td>
@@ -29,7 +35,9 @@ foreach($val as $array)
 </tr>
 <?php
 }
-pg_close($con);
+else {
+echo "0 results";}
+$con->close();
 ?>
 </table>
 
